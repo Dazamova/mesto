@@ -14,6 +14,12 @@
 
 .popup__close-button:hover {
   opacity: 60%;
+  transition: 1s;
+  cursor: pointer;
+}
+
+.popup__close-button:not(hover) {
+  transition: 1s;
 }
 
 @media screen and (max-width: 568px) {

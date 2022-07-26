@@ -1,30 +1,35 @@
 let popup = document.querySelector('.popup');
-let profileInfo = document.querySelector('.profile__info');
-const editButton = document.querySelector('.profile__edit-button');
-const closeButton = document.querySelector('.popup__close-button');
-const saveButton = document.querySelector('.popup__save-button');
-
-function openPopup() {
-    popup.classList.add('popup_opened');
-}
-editButton.addEventListener('click', openPopup);
-
-function closePopup() {
-    popup.classList.remove('popup_opened');
-}
-closeButton.addEventListener('click', closePopup);
-
-// функция изменения имени и инфо о себе
+let editButton = document.querySelector('.profile__edit-button');
+let closeButton = document.querySelector('.popup__close-button');
 let profileName = document.querySelector('.profile__name');
 let profileAboutYourself = document.querySelector('.profile__about-yourself');
+let inputName = document.querySelector('.popup__input_type_name');
+let inputAboutYourself = document.querySelector('.popup__input_type_about-yourself');
+let dataEditing = document.querySelector('.popup__data-editing');
 
-function formSubmitHandler(evt) {
-    evt.preventDefault();
-    let name = document.querySelector('.popup__name');
-    let aboutYourself = document.querySelector('.popup__about-yourself');
-    profileName.textContent = name.value;
-    profileAboutYourself.textContent = aboutYourself.value;
-    closePopup();
+
+// функция открытия "редактирование данных профиля"
+function openPopup() {
+  popup.classList.add('popup_opened');
+  inputName.value = profileName.textContent;
+  inputAboutYourself.value = profileAboutYourself.textContent;
 }
 
-saveButton.addEventListener('click', formSubmitHandler);
+// функция закрытия "редактирование данных профиля"
+function closePopup() {
+  popup.classList.remove('popup_opened');
+}
+
+// функция изменения имени и инфо о себе
+function editData(evt) {
+  evt.preventDefault();
+
+  profileName.textContent = inputName.value;
+  profileAboutYourself.textContent = inputAboutYourself.value;
+  closePopup();
+}
+
+// слушатели событий
+editButton.addEventListener('click', openPopup);
+dataEditing.addEventListener('submit', editData);
+closeButton.addEventListener('click', closePopup);

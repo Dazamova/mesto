@@ -8,21 +8,30 @@
   background-size: 10px 10px;
   background-position: center;
   background-repeat: no-repeat;
+  background-color: black;
   border: 1px solid #FFFFFF;
 }
 
 .profile__edit-button:hover {
   opacity: 60%;
+  transition: 1s;
+  cursor: pointer;
+}
+
+.profile__edit-button:not(hover) {
+  transition: 1s;
 }
 
 @media screen and (max-width: 767px) {
   .profile__edit-button {
-    margin-top: 7px;
+    margin-top: 9px;
   }
 }
 
 @media screen and (max-width: 568px) {
   .profile__edit-button {
-    margin-top: 0;
+    min-width: 18px;
+    height: 18px;
+    background-size: 7.5px 7.5px;
   }
 }

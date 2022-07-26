@@ -12,7 +12,6 @@
 
   <header class="header">
     <img class="header__logo" src="./images/logo.svg" alt="логотип">
-    <hr class="header__line">
   </header>
 
   <main>
@@ -22,62 +21,63 @@
       <div class="profile__info">
         <div class="profile__headline">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
-          <div class="profile__edit-button"></div>
+          <button type="button" class="profile__edit-button"></button>
         </div>
-        <h2 class="profile__about-yourself">Исследователь океана</h2>
+        <p class="profile__about-yourself">Исследователь океана</p>
       </div>
-      <div class="profile__add-button"></div>
+      <button type="button" class="profile__add-button"></button>
     </section>
 
     <section class="cards">
 
-      <div class="card">
+      <article class="card">
         <img class="card__image" src="./images/cards/Ai-Petri.jpg" alt="Ай-Петри">
         <div class="card__caption">
           <h2 class="card__title">Ай-Петри</h2>
-          <button class="card__like-button"></button>
+          <button type="button" class="card__like-button"></button>
         </div>
-      </div>
+      </article>
 
-      <div class="card">
+      <article class="card">
         <img class="card__image" src="./images/cards/Zhiguli.jpg" alt="Жигули">
         <div class="card__caption">
           <h2 class="card__title">Жигулевские горы</h2>
-          <button class="card__like-button"></button>
+          <button type="button" class="card__like-button"></button>
         </div>
-      </div>
+      </article>
 
-      <div class="card">
+      <article class="card">
         <img class="card__image" src="./images/cards/Elbrus.jpg" alt="Эльбрус">
         <div class="card__caption">
           <h2 class="card__title">Эльбрус</h2>
-          <button class="card__like-button"></button>
+          <button type="button" class="card__like-button"></button>
         </div>
-      </div>
+      </article>
 
-      <div class="card">
+      <article class="card">
         <img class="card__image" src="./images/cards/Sochi.jpg" alt="Роза-Хутор">
         <div class="card__caption">
           <h2 class="card__title">Роза Хутор</h2>
-          <button class="card__like-button"></button>
+          <button type="button" class="card__like-button"></button>
         </div>
-      </div>
+      </article>
 
-      <div class="card">
+      <article class="card">
         <img class="card__image" src="./images/cards/Egypt.jpg" alt="Эль-Гуна">
         <div class="card__caption">
           <h2 class="card__title">В пустыне Эль-Гуны</h2>
-          <button class="card__like-button"></button>
+          <button type="button" class="card__like-button"></button>
         </div>
-      </div>
+      </article>
 
-      <div class="card">
+      <article class="card">
         <img class="card__image" src="./images/cards/Altai.jpg" alt="Алтай">
         <div class="card__caption">
           <h2 class="card__title">Алтай</h2>
-          <button class="card__like-button"></button>
+          <button type="button" class="card__like-button"></button>
         </div>
-      </div>
+      </article>
+
     </section>
   </main>
 
@@ -87,14 +87,14 @@
 
   <div class="popup">
     <div class="popup__container">
-      <button class="popup__close-button"></button>
+      <button type="button" class="popup__close-button"></button>
       <h2 class="popup__heading">Редактировать профиль</h2>
-      <form class="popup__data-editing">
-        <input type="text" class="popup__input popup__name" placeholder="Введите имя">
-        <input type="text" class="popup__input popup__about-yourself" placeholder="Введите информацию о себе">
+      <form name="data-editing" class="popup__data-editing">
+        <input type="text" name="name" class="popup__input popup__input_type_name" placeholder="Введите имя">
+        <input type="text" name="about-yourself" class="popup__input popup__input_type_about-yourself"
+          placeholder="Введите информацию о себе">
+        <button type="submit" class="popup__save-button">Сохранить</button>
       </form>
-      <!-- <button class="popup__save-button">Сохранить</button> -->
-      <input type="submit" value="Сохранить" class="popup__save-button">
     </div>
   </div>
 

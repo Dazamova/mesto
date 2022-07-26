@@ -8,10 +8,18 @@
   background-size: 22px 22px;
   background-position: center;
   background-repeat: no-repeat;
+  border-radius: 2px;
+  background-color: black;
 }
 
 .profile__add-button:hover {
   opacity: 60%;
+  transition: 1s;
+  cursor: pointer;
+}
+
+.profile__add-button:not(hover) {
+  transition: 1s;
 }
 
 @media screen and (max-width: 1023px) {
