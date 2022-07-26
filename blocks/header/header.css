@@ -4,8 +4,8 @@
     width: 100%;
 }
 
-.header {
-    margin: 0;
-    padding:28px 0 42px 0;
-    width: 100%;
+@media screen and (max-width: 767px) {
+    .header {
+        padding: 28px 0 42px 0;
+    }
 }
