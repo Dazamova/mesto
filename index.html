@@ -30,71 +30,55 @@
 
     <section class="cards">
 
-      <article class="card">
-        <img class="card__image" src="./images/cards/Ai-Petri.jpg" alt="Ай-Петри">
-        <div class="card__caption">
-          <h2 class="card__title">Ай-Петри</h2>
-          <button type="button" class="card__like-button"></button>
-        </div>
-      </article>
-
-      <article class="card">
-        <img class="card__image" src="./images/cards/Zhiguli.jpg" alt="Жигули">
-        <div class="card__caption">
-          <h2 class="card__title">Жигулевские горы</h2>
-          <button type="button" class="card__like-button"></button>
-        </div>
-      </article>
-
-      <article class="card">
-        <img class="card__image" src="./images/cards/Elbrus.jpg" alt="Эльбрус">
-        <div class="card__caption">
-          <h2 class="card__title">Эльбрус</h2>
-          <button type="button" class="card__like-button"></button>
-        </div>
-      </article>
-
-      <article class="card">
-        <img class="card__image" src="./images/cards/Sochi.jpg" alt="Роза-Хутор">
-        <div class="card__caption">
-          <h2 class="card__title">Роза Хутор</h2>
-          <button type="button" class="card__like-button"></button>
-        </div>
-      </article>
-
-      <article class="card">
-        <img class="card__image" src="./images/cards/Egypt.jpg" alt="Эль-Гуна">
-        <div class="card__caption">
-          <h2 class="card__title">В пустыне Эль-Гуны</h2>
-          <button type="button" class="card__like-button"></button>
-        </div>
-      </article>
-
-      <article class="card">
-        <img class="card__image" src="./images/cards/Altai.jpg" alt="Алтай">
-        <div class="card__caption">
-          <h2 class="card__title">Алтай</h2>
-          <button type="button" class="card__like-button"></button>
-        </div>
-      </article>
-
     </section>
+    <template class="card-template">
+
+      <article class="card">
+        <button type="button" class="card__delete-button"></button>
+        <img class="card__image" src="#" alt="">
+        <div class="card__caption">
+          <h2 class="card__title"></h2>
+          <button type="button" class="card__like-button"></button>
+        </div>
+      </article>
+
+    </template>
   </main>
 
   <footer class="footer">
     <p class="footer__copyright">© 2020 Mesto Russia</p>
   </footer>
 
-  <div class="popup">
-    <div class="popup__container">
+  <div class="popup popup_edit-data">
+    <div class="popup__container popup__container_edit-data">
       <button type="button" class="popup__close-button"></button>
       <h2 class="popup__heading">Редактировать профиль</h2>
-      <form name="data-editing" class="popup__data-editing">
+      <form name="data-editing" class="popup__form-style popup__data-editing">
         <input type="text" name="name" class="popup__input popup__input_type_name" placeholder="Введите имя">
         <input type="text" name="about-yourself" class="popup__input popup__input_type_about-yourself"
           placeholder="Введите информацию о себе">
         <button type="submit" class="popup__save-button">Сохранить</button>
       </form>
+    </div>
+  </div>
+
+  <div class="popup popup_add-data">
+    <div class="popup__container popup__container_add-data">
+      <button type="button" class="popup__close-button"></button>
+      <h2 class="popup__heading">Новое место</h2>
+      <form name="add-data" class="popup__form-style popup__add-data">
+        <input type="text" name="place" class="popup__input popup__input_type_place" placeholder="Название">
+        <input type="text" name="image" class="popup__input popup__input_type_image" placeholder="Ссылка на картинку">
+        <button type="submit" class="popup__save-button">Сохранить</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="popup popup_open-card">
+    <div class="popup__container popup__container_open-card">
+      <button type="button" class="popup__close-button"></button>
+      <img class="popup__card-image" src="#" alt="">
+      <p class="popup__card-title"></p>
     </div>
   </div>
 
