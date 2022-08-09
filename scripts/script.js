@@ -1,20 +1,20 @@
-let popup = document.querySelectorAll('.popup');
-let popupEditData = document.querySelector('.popup_edit-data');
-let editButton = document.querySelector('.profile__edit-button');
-let closeButton = document.querySelectorAll('.popup__close-button');
-let profileName = document.querySelector('.profile__name');
-let profileAboutYourself = document.querySelector('.profile__about-yourself');
-let inputName = document.querySelector('.popup__input_type_name');
-let inputAboutYourself = document.querySelector('.popup__input_type_about-yourself');
-let inputPlace = document.querySelector('.popup__input_type_place');
-let inputImage = document.querySelector('.popup__input_type_image');
-let editingData = document.querySelector('.popup__data-editing');
-let addData = document.querySelector('.popup__add-data');
-let popupAddData = document.querySelector('.popup_add-data');
-let addButton = document.querySelector('.profile__add-button');
-let popupOpenCard = document.querySelector('.popup_open-card');
-let popupCardImage = document.querySelector('.popup__card-image');
-let popupCardTitle = document.querySelector('.popup__card-title');
+const popups = document.querySelectorAll('.popup');
+const popupEditData = document.querySelector('.popup_edit-data');
+const editButton = document.querySelector('.profile__edit-button');
+const closeButtons = document.querySelectorAll('.popup__close-button');
+const profileName = document.querySelector('.profile__name');
+const profileAboutYourself = document.querySelector('.profile__about-yourself');
+const inputName = document.querySelector('.popup__input_type_name');
+const inputAboutYourself = document.querySelector('.popup__input_type_about-yourself');
+const inputPlace = document.querySelector('.popup__input_type_place');
+const inputImage = document.querySelector('.popup__input_type_image');
+const editingData = document.querySelector('.popup__data-editing');
+const addData = document.querySelector('.popup__add-data');
+const popupAddData = document.querySelector('.popup_add-data');
+const addButton = document.querySelector('.profile__add-button');
+const popupOpenCard = document.querySelector('.popup_open-card');
+const popupCardImage = document.querySelector('.popup__card-image');
+const popupCardTitle = document.querySelector('.popup__card-title');
 const initialCards = [
   {
     name: 'Архыз',
@@ -69,22 +69,28 @@ function createCard(name, link) { //name и link для того, чтобы в�
   cardImage.src = link;
   cardImage.alt = name;
   cardTitle.textContent = name;
-  cardsContainer.prepend(card);
+  // cardsContainer.prepend(card);
+  return card;
+}
+
+function renderCard(name, link, container) {
+  const cardItem = createCard(name, link); //создаем ноду типа элемент
+  container.prepend(cardItem); //вставляем элемент в контейнер
 }
 
 //функция загрузки карточек по умолчанию
-function createInitialcard() {
+function createInitialCards() {
   initialCards.forEach(function (item) {
-    createCard(item.name, item.link);
+    renderCard(item.name, item.link, cardsContainer); //вставляем каждый элемент массива в контейнер
   });
 }
 
-createInitialcard(); //загружаем карточки по умолчанию
+createInitialCards(); //загружаем карточки по умолчанию
 
 //функция добавления карточек пользователя
 function addCard(evt) {
   evt.preventDefault();
-  createCard(inputPlace.value, inputImage.value);
+  renderCard(inputPlace.value, inputImage.value, cardsContainer);
   closePopup(popupAddData);
 }
 
@@ -96,7 +102,7 @@ function openPopup(pop) {
 
 // функция закрытия (попап)
 function closePopup() {
-  popup.forEach(function (item) { //for each, потому что там нод лист для попапов, их несколько, и им нельзя применить функции вроде remove
+  popups.forEach(function (item) { //for each, потому что там нод лист для попапов, их несколько, и им нельзя применить функции вроде remove
     item.classList.remove('popup_opened');
   });
 }
@@ -123,42 +129,9 @@ addButton.addEventListener('click', function () {
   inputImage.value = '';
 });
 
-closeButton.forEach(function (item) {
+closeButtons.forEach(function (item) {
   item.addEventListener('click', closePopup);
 });
 
 editingData.addEventListener('submit', editData);
 addData.addEventListener('submit', addCard);
-
-
-//заготовки
-// //для каждого элемента массива исполняем функцию - загрузку данных из массива:
-// initialCards.forEach(function (item) {
-//   const card = cardTemplate.cloneNode(true);
-//   card.querySelector('.card__image').src = item.link;
-//   card.querySelector('.card__image').alt = item.name;
-//   card.querySelector('.card__title').textContent = item.name;
-//   cardsContainer.append(card);
-// });
-
-// function addCard(evt) {
-//   evt.preventDefault();
-
-//   const card = cardTemplate.cloneNode(true);
-//   card.querySelector('.card__image').src = inputImage.value;
-//   card.querySelector('.card__image').alt = inputPlace.value;
-//   card.querySelector('.card__title').textContent = inputPlace.value;
-//   cardsContainer.prepend(card);
-//   closePopup(popupAddData);
-// }
-
-// function addCard(evt) {
-//   evt.preventDefault();
-
-//   const card = cardTemplate.cloneNode(true);
-//   card.querySelector('.card__image').src = inputImage.value;
-//   card.querySelector('.card__image').alt = inputPlace.value;
-//   card.querySelector('.card__title').textContent = inputPlace.value;
-//   cardsContainer.prepend(card);
-//   closePopup(popupAddData);
-// }
