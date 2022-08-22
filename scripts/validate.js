@@ -13,6 +13,17 @@ const hideInputError = (formElement, inputElement, { inputErrorClass, errorClass
   errorElement.textContent = '';
 };
 
+//функция сброса ошибки (постараться сделать рефакторинг)
+const hideError = () => {
+  errors.forEach(function (item) {
+    item.classList.remove('popup__error_visible');
+    item.textContent = '';
+  });
+  inputs.forEach(function (item) {
+    item.classList.remove('popup__input_type_error');
+  });
+};
+
 // Функция, которая проверяет валидность поля inputElement формы formElement
 const isValid = (formElement, inputElement, rest) => {
   if (!inputElement.validity.valid) {
@@ -60,9 +71,6 @@ const setEventListener = (formElement, { inputSelector, submitButtonSelector, in
 const enableValidation = ({ formSelector, ...rest }) => {
   const formList = Array.from(document.querySelectorAll(formSelector));
   formList.forEach((formElement) => {
-    formElement.addEventListener('submit', (evt) => {
-      evt.preventDefault();
-    });
     setEventListener(formElement, rest);
   });
 };

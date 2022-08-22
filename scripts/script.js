@@ -98,34 +98,23 @@ function createInitialCards() {
 
 createInitialCards(); //загружаем карточки по умолчанию
 
-//функция добавления карточек пользователя
+//функция "добавление карточек пользователя"
 function addCard(evt) {
   evt.preventDefault();
   renderCard(inputPlace.value, inputImage.value, cardsContainer);
   closePopup(popupAddData);
 }
-//функция сброса ошибки (постараться сделать рефакторинг)
-const hideError = () => {
-  errors.forEach(function (item) {
-    item.classList.remove('popup__error_visible');
-    item.textContent = '';
-  });
-  inputs.forEach(function (item) {
-    item.classList.remove('popup__input_type_error');
-  });
-};
 
 // функция открытия (попап)
-function openPopup(pop) {
-  pop.classList.add('popup_opened');
+function openPopup(item) {
+  item.classList.add('popup_opened');
+  document.addEventListener('keydown', closeByEsc);
 };
 
 // функция закрытия (попап)
-function closePopup() {
-  popups.forEach(function (item) { //for each, потому что там нод лист для попапов, их несколько, и им нельзя применить функции вроде remove
-    item.classList.remove('popup_opened');
-  });
-  hideError();
+function closePopup(item) {
+  item.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closeByEsc)
 };
 
 // функция изменения имени и инфо о себе
@@ -138,46 +127,43 @@ function editData(evt) {
 }
 
 // слушатели событий
+//открытие попапа "редактирование профиля"
 editButton.addEventListener('click', function () {
   inputName.value = profileName.textContent;
   inputAboutYourself.value = profileAboutYourself.textContent;
-  // formEditingData.submit.setAttribute('disabled', 'disabled');
+  formEditingData.elements.submit.setAttribute('disabled', 'disabled');
+  formEditingData.elements.submit.classList.add('popup__save-button_disabled');
+  hideError();
   openPopup(popupEditData);
 });
 
+//открытие попапа "добавление карточек пользователя"
 addButton.addEventListener('click', function () {
   formAddData.reset();
-  // formAddData.submit.setAttribute('disabled', 'disabled');
+  formAddData.elements.submit.setAttribute('disabled', 'disabled');
+  formAddData.elements.submit.classList.add('popup__save-button_disabled');
+  hideError();
   openPopup(popupAddData);
 });
 
-closeButtons.forEach(function (item) {
-  item.addEventListener('click', closePopup);
-});
+console.log(formAddData);
 
 popups.forEach(function (item) {
   item.addEventListener('click', function (event) {
-    if (event.target === event.currentTarget) {
-      closePopup();
+    if (event.target === event.currentTarget || event.target.classList.contains('popup__close-button')) {
+      closePopup(item);
     }
   });
 });
 
-// popups.forEach(function (item) {
-//   item.addEventListener('keydown', function (event) {
-//     if (event.key === "Escape") {
-//       closePopup();
-//     }
-//   });
-// });
-
-function handleEscUp(evt) {
+function closeByEsc(evt) {
   if (evt.key === "Escape") {
-    closePopup();
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
   }
 };
 
-document.addEventListener('keydown', handleEscUp);
+// document.addEventListener('keydown', handleEscUp);
 
 formEditingData.addEventListener('submit', editData); //при отправке формы выполняется функция "редактировать данные"
 formAddData.addEventListener('submit', addCard); //при отправке формы выполняется функция "добавить карточку"
