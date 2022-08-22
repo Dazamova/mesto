@@ -12,7 +12,7 @@
   line-height: 22px;
 }
 
-.popup__save-button:hover {
+.popup__save-button:not([disabled]):hover {
   opacity: 80%;
   transition: 1s;
   cursor: pointer;
