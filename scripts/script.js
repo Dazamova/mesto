@@ -146,8 +146,6 @@ addButton.addEventListener('click', function () {
   openPopup(popupAddData);
 });
 
-console.log(formAddData);
-
 popups.forEach(function (item) {
   item.addEventListener('click', function (event) {
     if (event.target === event.currentTarget || event.target.classList.contains('popup__close-button')) {
