@@ -19,8 +19,6 @@ const popupCardImage = document.querySelector('.popup__card-image');
 const popupCardTitle = document.querySelector('.popup__card-title');
 const cardsContainer = document.querySelector('.cards'); //контейнер, в который добавляем карточки
 const cardSelector = '.card-template';
-const errors = document.querySelectorAll('.popup__error');
-const inputs = document.querySelectorAll('.popup__input');
 
 const initialCards = [
   {
@@ -49,7 +47,6 @@ const initialCards = [
   }
 ];
 
-// const cardTemplate = document.querySelector('.card-template').content.children[0]; //получаем ноду //+
 const config = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
@@ -59,9 +56,7 @@ const config = {
   errorClass: 'popup__error_visible',
 };
 
-
-
-function renderCard(name, link, selector, container) {
+function createCard(name, link, selector) {
   const card = new Card(name, link, selector, () => {
     openPopup(popupOpenCard);
     popupCardImage.src = link;
@@ -69,9 +64,24 @@ function renderCard(name, link, selector, container) {
     popupCardTitle.textContent = name;
   }); //создаем ноду типа элемент
   const cardItem = card.render();
-
-  container.prepend(cardItem); //вставляем элемент в контейнер
+  return cardItem;
 }
+
+function renderCard(name, link, selector, container) {
+  container.prepend(createCard(name, link, selector)); //вставляем элемент в контейнер
+}
+
+// function renderCard(name, link, selector, container) {
+//   const card = new Card(name, link, selector, () => {
+//     openPopup(popupOpenCard);
+//     popupCardImage.src = link;
+//     popupCardImage.alt = name;
+//     popupCardTitle.textContent = name;
+//   }); //создаем ноду типа элемент
+//   const cardItem = card.render();
+
+//   container.prepend(cardItem); //вставляем элемент в контейнер
+// }
 
 //функция загрузки карточек по умолчанию
 function createInitialCards() {
@@ -110,38 +120,25 @@ function editData(evt) {
   closePopup(popupEditData);
 }
 
-//функция сброса ошибки (постараться сделать рефакторинг)
-const hideError = () => {
-  errors.forEach(function (item) {
-    item.classList.remove(config.errorClass);
-    item.textContent = '';
-  });
-  inputs.forEach(function (item) {
-    item.classList.remove(config.inputErrorClass);
-  });
-};
+const formEditingDataValidator = new FormValidator(config, formEditingData);
+formEditingDataValidator.enableValidation();
 
 // слушатели событий
 //открытие попапа "редактирование профиля"
 editButton.addEventListener('click', function () {
-  const formEditingDataValidator = new FormValidator(config, formEditingData);
-  formEditingDataValidator.enableValidation();
   inputName.value = profileName.textContent;
   inputAboutYourself.value = profileAboutYourself.textContent;
-  formEditingData.elements.submit.setAttribute('disabled', 'disabled');
-  formEditingData.elements.submit.classList.add('popup__save-button_disabled');
-  hideError();
+  formEditingDataValidator.resetValidation();
   openPopup(popupEditData);
 });
 
+const formAddDataValidator = new FormValidator(config, formAddData);
+formAddDataValidator.enableValidation();
+
 //открытие попапа "добавление карточек пользователя"
 addButton.addEventListener('click', function () {
-  const formAddDataValidator = new FormValidator(config, formAddData);
   formAddData.reset();
-  formAddDataValidator.enableValidation();
-  formAddData.elements.submit.setAttribute('disabled', 'disabled');
-  formAddData.elements.submit.classList.add('popup__save-button_disabled');
-  hideError();
+  formAddDataValidator.resetValidation();
   openPopup(popupAddData);
 });
 

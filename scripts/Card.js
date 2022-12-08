@@ -33,7 +33,7 @@ export class Card {
       .querySelector(this._selector)
       // .querySelector('.card-template')
       .content
-      .children[0]
+      .querySelector('.card')
       .cloneNode(true);
 
     return _cardElement; //возвращаю DOM-элемент карточки
