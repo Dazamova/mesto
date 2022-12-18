@@ -3,6 +3,8 @@
   height: 282px;
   object-fit: cover;
   object-position: center;
+  background-color: black;
+  color: white;
 }
 
 .card__image:hover {

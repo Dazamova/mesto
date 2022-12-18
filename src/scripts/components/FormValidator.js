@@ -71,6 +71,11 @@ export class FormValidator {
         this._toggleButtonState();
       });
     });
+
+    //выключатель кнопки,чтобы нельзя было несколько раз отправить карточку
+    this._validateForm.addEventListener('submit', () => {
+      this._buttonElement.setAttribute('disabled', 'disabled');
+    });
   }
 
   enableValidation() {

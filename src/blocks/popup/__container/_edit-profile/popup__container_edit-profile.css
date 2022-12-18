@@ -1,4 +1,4 @@
-.popup__container_add-data {
+.popup__container_edit-profile {
   width: 430px;
   background-color: white;
   border-radius: 10px;
@@ -11,7 +11,7 @@
 }
 
 @media screen and (max-width: 568px) {
-  .popup__container_add-data {
+  .popup__container_edit-profile {
     max-width: 100%;
     min-width: 282px;
     margin-right: 19px;

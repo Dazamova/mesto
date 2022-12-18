@@ -4,31 +4,29 @@ export class PopupWithForm extends Popup {
   _inputList;
   _formValues;
   _popupForm;
-  _buttonElement;
+  _handleFormSubmit;
 
   constructor(handleFormSubmit, popupSelector) {
     super(popupSelector);
     this._handleFormSubmit = handleFormSubmit; //принимает в конструктор колбэк сабмита формы
+    this._inputList = this._popup.querySelectorAll('.popup__input'); //собираю все элементы полей этого попапа
+    this._popupForm = this._popup.querySelector('.popup__form');
   }
 
   //собираем данные из полей
   _getInputValues() {
-    this._inputList = this._popup.querySelectorAll('.popup__input'); //собираю все элементы полей этого попапа
-    this._formValues = {};
+    const formValues = {};
     this._inputList.forEach(input => {
-      this._formValues[input.name] = input.value;
+      formValues[input.name] = input.value;
     });
 
-    return this._formValues;
+    return formValues;
   }
 
   setEventListeners() {
     super.setEventListeners();
-    this._popupForm = this._popup.querySelector('.popup__form');
-    this._buttonElement = this._popup.querySelector('.popup__save-button');
     this._popupForm.addEventListener('submit', (evt) => {
       evt.preventDefault();
-      this._buttonElement.setAttribute('disabled', 'disabled');
       this._handleFormSubmit(this._getInputValues());
       this.closePopup();
     });

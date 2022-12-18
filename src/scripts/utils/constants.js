@@ -1,15 +1,15 @@
-export const popupEditData = '.popup_edit-data';
+export const popupEditProfileSelector = '.popup_edit-profile';
 export const editButton = document.querySelector('.profile__edit-button');
 export const profileName = document.querySelector('.profile__name');
 export const profileAboutYourself = document.querySelector('.profile__about-yourself');
-export const formEditingData = document.forms.editingData;
-export const inputName = editingData.elements.name;
-export const inputAboutYourself = editingData.elements.aboutYourself;
-export const formAddData = document.forms.addData;
-export const popupAddData = '.popup_add-data';
+export const formEditProfile = document.forms.editProfile;
+export const inputName = editProfile.elements.name;
+export const inputAboutYourself = editProfile.elements.aboutYourself;
+export const formAddCard = document.forms.addCard;
+export const popupAddCardSelector = '.popup_add-card';
 export const addButton = document.querySelector('.profile__add-button');
-export const popupOpenCard = '.popup_open-card';
-export const cardsContainer = '.cards';
+export const popupOpenCardSelector = '.popup_open-card';
+export const cardsContainerSelector = '.cards';
 export const cardSelector = '.card-template';
 
 export const initialCards = [
@@ -39,7 +39,7 @@ export const initialCards = [
   }
 ];
 
-export const config = {
+export const validationConfig = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__save-button',
