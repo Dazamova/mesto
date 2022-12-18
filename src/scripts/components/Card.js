@@ -8,23 +8,23 @@ export class Card {
   _cardTitle;
   _deleteButton;
   _likeButton;
-  _onClick;
 
-  constructor(name, link, selector, onClick) { //какие-то данные name и link, которые приходят извне, и записываются в свойства _name и _link класса Card
+  constructor(name, link, selector, handleCardClick) { //какие-то данные name и link, которые приходят извне, и записываются в свойства _name и _link класса Card
     this._name = name;
     this._link = link;
-    this._onClick = onClick; //извне передается функция, через нее можно передать параметры
+    this._handleCardClick = handleCardClick; //извне передается функция, через нее можно передать параметры
     this._selector = selector;
   }
 
-  // constructor(name, link, onClick) { //какие-то данные name и link, которые приходят извне, и записываются в свойства _name и _link класса Card
-  //     this._name = name;
-  //     this._link = link;
-  //     this._onClick = onClick; //извне передается функция, через нее можно передать параметры
-  // }
+  _removeCard() {
+    this._card.remove();
+  }
 
+  _like() {
+    this._likeButton.classList.toggle('card__like-button_active');
+  }
   _cardImageClick() {
-    this._onClick(this._name, this._link);
+    this._handleCardClick(this._name, this._link);
   }
 
   _getTemplate() {
@@ -41,13 +41,13 @@ export class Card {
 
   _setEventListeners() {
     this._deleteButton.addEventListener('click', () => {
-      // this._removeCard();
-      this._card.remove();
+      this._removeCard();
+      // this._card.remove();
     });
 
     this._likeButton.addEventListener('click', () => {
-      // this._like();
-      this._likeButton.classList.toggle('card__like-button_active');
+      this._like();
+      // this._likeButton.classList.toggle('card__like-button_active');
     });
 
     this._cardImage.addEventListener('click', () => {
@@ -70,11 +70,4 @@ export class Card {
 
     return this._card;
   }
-  // _removeCard() {
-  //   this._card.remove();
-  // }
-
-  // _like() {
-  //   this._likeButton.classList.toggle('card__like-button_active');
-  // }
 }
