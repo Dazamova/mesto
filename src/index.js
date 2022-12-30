@@ -77,7 +77,7 @@ popupEditProfile.setEventListeners();
 editButton.addEventListener('click', function () {
   formEditProfileValidator.resetValidation();
   const {name, aboutYourself} = userInfo.getUserInfo();
-  inputName.value = {name, aboutYourself}.name;
-  inputAboutYourself.value = {name, aboutYourself}.aboutYourself; 
+  inputName.value = name;
+  inputAboutYourself.value = aboutYourself; 
   popupEditProfile.openPopup();
 });
