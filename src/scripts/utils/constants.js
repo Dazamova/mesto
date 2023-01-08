@@ -2,42 +2,20 @@ export const popupEditProfileSelector = '.popup_edit-profile';
 export const editButton = document.querySelector('.profile__edit-button');
 export const profileName = document.querySelector('.profile__name');
 export const profileAboutYourself = document.querySelector('.profile__about-yourself');
+export const profileAvatar = document.querySelector('.profile__avatar');
+export const profileAvatarContainer = document.querySelector('.profile__avatar-container');
 export const formEditProfile = document.forms.editProfile;
 export const inputName = editProfile.elements.name;
 export const inputAboutYourself = editProfile.elements.aboutYourself;
 export const formAddCard = document.forms.addCard;
 export const popupAddCardSelector = '.popup_add-card';
 export const addButton = document.querySelector('.profile__add-button');
+export const popupUpdateAvatarSelector = '.popup_update-avatar';
+export const formUpdateAvatar = document.forms.updateAvatar;
 export const popupOpenCardSelector = '.popup_open-card';
 export const cardsContainerSelector = '.cards';
+export const popupWithConfirmationSelector = '.popup_confirm';
 export const cardSelector = '.card-template';
-
-export const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
 
 export const validationConfig = {
   formSelector: '.popup__form',
@@ -47,3 +25,11 @@ export const validationConfig = {
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__error_visible',
 };
+
+export const apiConfig = {
+  baseUrl: 'https://mesto.nomoreparties.co',
+  headers: {
+      'Authorization': '08ca9b9b-5109-4975-909a-0b8f1b0ed24a',
+      'Content-Type': 'application/json'
+  }
+}

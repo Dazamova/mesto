@@ -11,6 +11,17 @@ export class PopupWithForm extends Popup {
     this._handleFormSubmit = handleFormSubmit; //принимает в конструктор колбэк сабмита формы
     this._inputList = this._popup.querySelectorAll('.popup__input'); //собираю все элементы полей этого попапа
     this._popupForm = this._popup.querySelector('.popup__form');
+    this._submitButton = this._popup.querySelector('.popup__save-button');
+  }
+
+  dataLoading(isLoading, text) {
+    // const textLoading = ;
+    // // text = '';
+    if (isLoading) {
+      this._submitButton.textContent = 'Загрузка...';
+    } else {
+      this._submitButton.textContent = text;
+    }
   }
 
   //собираем данные из полей
@@ -27,6 +38,7 @@ export class PopupWithForm extends Popup {
     super.setEventListeners();
     this._popupForm.addEventListener('submit', (evt) => {
       evt.preventDefault();
+      this.dataLoading(true);
       this._handleFormSubmit(this._getInputValues());
       this.closePopup();
     });
@@ -35,6 +47,5 @@ export class PopupWithForm extends Popup {
   closePopup() {
     this._popupForm.reset();
     super.closePopup();
-
   }
 }

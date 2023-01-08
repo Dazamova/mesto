@@ -5,12 +5,12 @@ export class PopupWithImage extends Popup {
     super(popupSelector);
   }
 
-  openPopup(name, link) {
+  openPopup(data) {
     super.openPopup();//вызываем родительский метод
     const popupCardImage = document.querySelector('.popup__card-image');
     const popupCardTitle = document.querySelector('.popup__card-title');
-    popupCardImage.src = link;
-    popupCardImage.alt = name;
-    popupCardTitle.textContent = name;
+    popupCardImage.src = data.link;
+    popupCardImage.alt = data.name;
+    popupCardTitle.textContent = data.name;
   }
 }
