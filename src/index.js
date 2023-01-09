@@ -58,17 +58,17 @@ popupWithConfirmation.setEventListeners();
 function createCard(data) {
   const card = new Card(data, cardSelector,
     (data) => {
-      popupWithImage.openPopup(data); //перезаписанный метод openPopup для потомка Popup
+      popupWithImage.open(data); //перезаписанный метод open для потомка Popup
     },
-    async (card) => {
-      popupWithConfirmation.openPopup({
+    (card) => {
+      popupWithConfirmation.open({
         onConfirm: () => {
           api.deleteCard(card.data._id);
           card.removeCard();
         }
       });
     },
-    async (card) => {
+    (card) => {
       api.like(card.data._id).then((res) => {
         card.data = res;
         card.countLikes();
@@ -77,7 +77,7 @@ function createCard(data) {
         console.log(rej)
       });
     },
-    async (card) => {
+    (card) => {
       api.dislike(card.data._id).then((res) => {
         card.data = res;
         card.countLikes();
@@ -105,14 +105,14 @@ const popupAddCard = new PopupWithForm((formData) => {
   api.addCard(formData).then((card) => {
     cardsList.addItem(createCard(card));
   })
-    .catch((err) => renderError(`Ошибка: ${err}`))
+    .catch((err) => console.log(err))
     .finally(() => popupAddCard.dataLoading(false, "Создать"))
 }, popupAddCardSelector);
 popupAddCard.setEventListeners();
 
 addButton.addEventListener('click', function () {
   formAddCardValidator.resetValidation();
-  popupAddCard.openPopup();
+  popupAddCard.open();
 });
 
 //"редактирование профиля"
@@ -123,7 +123,7 @@ const popupEditProfile = new PopupWithForm((formData) => {
   api.editProfile(formData).then((data) => {
     userInfo.setUserInfo({ name: data.name, aboutYourself: data.about });
   })
-    .catch((err) => renderError(`Ошибка: ${err}`))
+    .catch((err) => console.log(err))
     .finally(() => popupEditProfile.dataLoading(false, "Сохранить"))
 }, popupEditProfileSelector);
 popupEditProfile.setEventListeners();
@@ -133,7 +133,7 @@ editButton.addEventListener('click', function () {
   const { name, aboutYourself } = userInfo.getUserInfo();
   inputName.value = name;
   inputAboutYourself.value = aboutYourself;
-  popupEditProfile.openPopup();
+  popupEditProfile.open();
 });
 
 //"обновление аватара"
@@ -144,12 +144,12 @@ const popupUpdateAvatar = new PopupWithForm((formData) => {
   api.editAvatar(formData).then((data) => {
     profileAvatar.src = data.avatar;
   })
-    .catch((err) => renderError(`Ошибка: ${err}`))
+    .catch((err) => console.log(err))
     .finally(() => popupUpdateAvatar.dataLoading(false, "Сохранить"))
 }, popupUpdateAvatarSelector);
 popupUpdateAvatar.setEventListeners();
 
 profileAvatarContainer.addEventListener('click', function () {
   formUpdateAvatarValidator.resetValidation();
-  popupUpdateAvatar.openPopup();
+  popupUpdateAvatar.open();
 })

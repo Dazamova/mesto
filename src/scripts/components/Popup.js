@@ -7,15 +7,15 @@ export class Popup {
   //стрелочная функция, чтобы не терялся контекст this
   _handleEscClose = (evt) => {
     if (evt.key === "Escape") {
-      this.closePopup();
+      this.close();
     };
   }
-  openPopup() {
+  open() {
     this._popup.classList.add('popup_opened');
     document.addEventListener('keydown', this._handleEscClose);
   }
 
-  closePopup() {
+  close() {
     this._popup.classList.remove('popup_opened');
     document.removeEventListener('keydown', this._handleEscClose);
   }
@@ -24,7 +24,7 @@ export class Popup {
   setEventListeners() {
     this._popup.addEventListener('click', (event) => {
       if (event.target === event.currentTarget || event.target.classList.contains('popup__close-button')) {
-        this.closePopup();
+        this.close();
       }
     });
   }

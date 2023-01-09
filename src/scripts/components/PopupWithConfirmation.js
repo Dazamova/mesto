@@ -8,20 +8,20 @@ export class PopupWithConfirmation extends Popup {
     this._confirmButton = this._popup.querySelector('.popup__save-button');
   }
 
-  openPopup({ onConfirm }) {
+  open({ onConfirm }) {
     this._handleConfirm = onConfirm;
-    super.openPopup();
+    super.open();
   }
 
-  closePopup() {
+  close() {
     this._handleConfirm = undefined;
-    super.closePopup();
+    super.close();
   }
   setEventListeners() {
     super.setEventListeners();
     this._confirmButton.addEventListener('click', () => {
       this._handleConfirm();
-      this.closePopup();
+      this.close();
     });
   }
 }

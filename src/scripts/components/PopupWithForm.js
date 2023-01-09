@@ -40,12 +40,12 @@ export class PopupWithForm extends Popup {
       evt.preventDefault();
       this.dataLoading(true);
       this._handleFormSubmit(this._getInputValues());
-      this.closePopup();
+      this.close();
     });
   }
 
-  closePopup() {
+  close() {
     this._popupForm.reset();
-    super.closePopup();
+    super.close();
   }
 }
